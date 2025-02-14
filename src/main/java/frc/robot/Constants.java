@@ -16,10 +16,30 @@ package frc.robot;
 public final class Constants
 {
     public static final class DriveConstants {
-        public static final int LEFT_MOTOR_ONE = 1;
-        public static final int LEFT_MOTOR_TWO = 2;
-        public static final int RIGHT_MOTOR_ONE = 3;
-        public static final int RIGHT_MOTOR_TWO = 4;
+        public static final int LEFT_MOTOR_ONE_ID = 10;
+        public static final int LEFT_MOTOR_TWO_ID = 11;
+        public static final int RIGHT_MOTOR_ONE_ID = 12;
+        public static final int RIGHT_MOTOR_TWO_ID = 13;
+
+        public static final double ARCADE_DRIVE_Y_SPEED = 0.7;
+        public static final double ARCADE_DRIVE_X_SPEED = 0.7;
+    }
+
+    public static final class CoralConstants {
+        public static final int CORAL_MOTOR_ID = 14;
+
+        public static final double CORAL_MOTOR_SPEED = 0.6;
+        public static final double CORAL_MOTOR_VOLTAGE = 1;
+    }
+
+    public static final class AlgConstants {
+        public static final int ALG_MOTOR_ID = 15;
+
+        public static final double ALG_INTAKE_SPEED = 0.8;
+        public static final double ALG_INTAKE_VOLTAGE = 1;
+
+        public static final double ALG_OUTTAKE_SPEED = 0.4;
+        public static final double ALG_OUTTAKE_VOLTAGE = 1;
     }
 
     public static final class ControllerConstants {

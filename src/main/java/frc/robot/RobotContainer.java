@@ -6,9 +6,17 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.AlgInTakeCommand;
+import frc.robot.commands.AlgOutTakeCommand;
+import frc.robot.commands.CoralShootCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.subsystems.AlgInTakeSubsystem;
+import frc.robot.subsystems.AlgOutTakeSubsystem;
+import frc.robot.subsystems.CoralShootSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 
 
@@ -25,13 +33,15 @@ public class RobotContainer
     //private final Joystick shooterController = new Joystick(Constants.ControllerConstants.SHOOTER_CONTROLLER_PORT);
 
     private final DriveSubsystem driveSubsystem = new DriveSubsystem(driverController);
+    private final CoralShootSubsystem coralShootSubsystem = new CoralShootSubsystem(driverController);
+    private final AlgInTakeSubsystem algInTakeSubsystem = new AlgInTakeSubsystem(driverController);
+    private final AlgOutTakeSubsystem algOutTakeSubsystem = new AlgOutTakeSubsystem(driverController);
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
+        driveSubsystem.setDefaultCommand(new DriveCommand(driveSubsystem));
         configureBindings();
-
-        driveSubsystem.setDefaultCommand(new DriveCommand(driveSubsystem, driverController.getRawAxis(3) - driverController.getRawAxis(2) * 0.7, -driverController.getX() * 0.6));
     }
     
 
@@ -46,9 +56,10 @@ public class RobotContainer
      */
     private void configureBindings()
     {
-
+        new JoystickButton(driverController, XboxController.Button.kA.value).whileTrue(new CoralShootCommand(coralShootSubsystem).repeatedly());
+        new JoystickButton(driverController, XboxController.Button.kX.value).whileTrue(new AlgInTakeCommand(algInTakeSubsystem).repeatedly());
+        new JoystickButton(driverController, XboxController.Button.kB.value).whileTrue(new AlgOutTakeCommand(algOutTakeSubsystem).repeatedly());
     }
-    
     
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.

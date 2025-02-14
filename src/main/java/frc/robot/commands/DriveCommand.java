@@ -6,13 +6,9 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends Command {
     private final DriveSubsystem driveSubsystem;
-    private final double forward;
-    private final double rotation;
 
-    public DriveCommand(DriveSubsystem driveSubsystem, double forward, double rotation) {
+    public DriveCommand(DriveSubsystem driveSubsystem) {
         this.driveSubsystem = driveSubsystem;
-        this.forward = forward;
-        this.rotation = rotation;
         addRequirements(this.driveSubsystem);
     }
 
@@ -23,7 +19,7 @@ public class DriveCommand extends Command {
 
     @Override
     public void execute() {
-        driveSubsystem.arcadeDrive(forward, rotation);
+        driveSubsystem.arcadeDrive();
     }
 
     @Override
